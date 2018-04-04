@@ -2,7 +2,7 @@ import java.io.File
 import java.nio.file.Path
 import java.nio.file.Paths
 
-
+var projectArg = System.getProperty("project")
 val appData = System.getenv("LOCALAPPDATA")!!
 var toolboxPath = "$appData/JetBrains/Toolbox"
 var channelsPath = "$toolboxPath/apps/IDEA-U/ch-0/"
@@ -18,15 +18,14 @@ fun runIntelliJ() {
             }
 }
 
-fun log(path: Path) = println("executing $path with project ${getProjectArg() ?: "- none"}")
+fun log(path: Path) = println("executing $path with project ${projectArg ?: "- none"}")
 
-fun getProjectArg(): String? = System.getProperty("project")
-
-fun exec(path: Path) = Runtime.getRuntime().exec("$path ${getProjectArg().orEmpty()}")
+fun exec(path: Path) = Runtime.getRuntime().exec("$path ${projectArg.orEmpty()}")
 
 fun getPath(version: Version) = Paths.get(channelsPath + version.version + runtimeSuffix).toAbsolutePath()!!
 
 fun main(args: Array<String>) {
+    args.asIterable().first { it.startsWith("project=") }.substringAfter("project=").let { projectArg = it }
     runIntelliJ()
 }
 
