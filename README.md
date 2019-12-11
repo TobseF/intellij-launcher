@@ -1,5 +1,8 @@
-# intellij-launcher
-Kotlin script that launches the latest installed IntelliJ with a specified project.
+# 🚀 IntelliJ-launcher Script
+
+> 👉 Here you can find a Kotlin Native version of this script: [IntelliJ-Launcher](https://github.com/TobseF/IntelliJ-Launcher-n)
+
+A Kotlin script that launches the latest installed IntelliJ with a specified project.
 This can be useful to launch IntelliJ e.g. on system startup.
 It provides a permanent shortcut which survives any update.
 
